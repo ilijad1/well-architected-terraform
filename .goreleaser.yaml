@@ -1,0 +1,148 @@
+version: 2
+
+project_name: wat
+
+before:
+  hooks:
+    - go mod tidy
+    - go mod verify
+
+builds:
+  - id: wat
+    main: .
+    binary: wat
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    ldflags:
+      - -s -w
+      - -X github.com/ilijad1/well-architected-terraform/cmd.version={{.Version}}
+      - -X github.com/ilijad1/well-architected-terraform/cmd.commit={{.Commit}}
+      - -X github.com/ilijad1/well-architected-terraform/cmd.date={{.Date}}
+    mod_timestamp: "{{ .CommitTimestamp }}"
+
+archives:
+  - id: wat
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    files:
+      - LICENSE
+      - README.md
+      - CHANGELOG.md
+
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+changelog:
+  use: github
+  sort: asc
+  abbrev: 0
+  groups:
+    - title: "Breaking Changes"
+      regexp: '^.*?(\w+)(\(.+\))?\!:.*$'
+      order: 0
+    - title: "New Rules"
+      regexp: '^.*?(feat|add|rule)(\(.+\))?:.*rule.*$'
+      order: 1
+    - title: "Features"
+      regexp: '^.*?(feat|add)(\(.+\))?:.*$'
+      order: 2
+    - title: "Bug Fixes"
+      regexp: '^.*?(fix|bugfix)(\(.+\))?:.*$'
+      order: 3
+    - title: "Dependency Updates"
+      regexp: '^.*?(chore|deps)(\(.+\))?:.*$'
+      order: 4
+    - title: "Other Changes"
+      order: 99
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+      - "typo"
+      - "Merge pull request"
+      - "Merge branch"
+
+release:
+  github:
+    owner: ilija
+    name: well-architected-terraform
+  name_template: "v{{ .Version }}"
+  header: |
+    ## well-architected-terraform {{ .Tag }}
+
+    See the full rule list with: `wat list-rules`
+
+    **Quick install:**
+    ```bash
+    # macOS (Apple Silicon)
+    curl -L https://github.com/ilijad1/well-architected-terraform/releases/download/{{ .Tag }}/wat_{{ .Version }}_darwin_arm64.tar.gz | tar -xz && mv wat /usr/local/bin/
+
+    # macOS (Intel)
+    curl -L https://github.com/ilijad1/well-architected-terraform/releases/download/{{ .Tag }}/wat_{{ .Version }}_darwin_amd64.tar.gz | tar -xz && mv wat /usr/local/bin/
+
+    # Linux (x86_64)
+    curl -L https://github.com/ilijad1/well-architected-terraform/releases/download/{{ .Tag }}/wat_{{ .Version }}_linux_amd64.tar.gz | tar -xz && mv wat /usr/local/bin/
+    ```
+  footer: |
+    **Full Changelog**: https://github.com/ilijad1/well-architected-terraform/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+dockers:
+  - image_templates:
+      - "ghcr.io/ilijad1/well-architected-terraform:{{ .Version }}-amd64"
+      - "ghcr.io/ilijad1/well-architected-terraform:latest-amd64"
+    use: buildx
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--platform=linux/amd64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://github.com/ilijad1/well-architected-terraform"
+      - "--label=org.opencontainers.image.description=Blazing fast Terraform analyzer for Well-Architected best practices"
+      - "--label=org.opencontainers.image.licenses=MIT"
+    goarch: amd64
+
+  - image_templates:
+      - "ghcr.io/ilijad1/well-architected-terraform:{{ .Version }}-arm64"
+      - "ghcr.io/ilijad1/well-architected-terraform:latest-arm64"
+    use: buildx
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--platform=linux/arm64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://github.com/ilijad1/well-architected-terraform"
+      - "--label=org.opencontainers.image.description=Blazing fast Terraform analyzer for Well-Architected best practices"
+      - "--label=org.opencontainers.image.licenses=MIT"
+    goarch: arm64
+
+docker_manifests:
+  - name_template: "ghcr.io/ilijad1/well-architected-terraform:{{ .Version }}"
+    image_templates:
+      - "ghcr.io/ilijad1/well-architected-terraform:{{ .Version }}-amd64"
+      - "ghcr.io/ilijad1/well-architected-terraform:{{ .Version }}-arm64"
+
+  - name_template: "ghcr.io/ilijad1/well-architected-terraform:latest"
+    image_templates:
+      - "ghcr.io/ilijad1/well-architected-terraform:latest-amd64"
+      - "ghcr.io/ilijad1/well-architected-terraform:latest-arm64"
+
+announce:
+  skip: true

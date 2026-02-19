@@ -1,0 +1,54 @@
+# Git
+.git/
+.github/
+.gitignore
+
+# Build artifacts
+wat
+wat.exe
+dist/
+*.bin
+*.tfplan
+
+# Test and coverage files
+*.test
+*.prof
+coverage.out
+coverage.html
+
+# Output files
+plan.json
+report.md
+results.sarif
+*.sarif
+findings.csv
+*.csv
+test-results.xml
+*.xml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
+
+# Documentation (not needed in container)
+README.md
+CONTRIBUTING.md
+SECURITY.md
+LICENSE
+CLAUDE.md
+
+# CI/CD configs (not needed in container)
+.golangci.yml
+.goreleaser.yaml
+Makefile
+
+# Terraform artifacts
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup

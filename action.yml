@@ -1,0 +1,135 @@
+name: 'AWS Well-Architected Terraform Analyzer'
+description: 'Analyze Terraform plans against AWS Well-Architected Framework best practices'
+author: 'ilijad1'
+
+branding:
+  icon: 'shield'
+  color: 'orange'
+
+inputs:
+  plan-file:
+    description: 'Path to the Terraform plan JSON file'
+    required: true
+  format:
+    description: 'Output format (cli, json, markdown, sarif, junit, csv)'
+    required: false
+    default: 'cli'
+  output-file:
+    description: 'Output file path (optional, prints to stdout if not specified)'
+    required: false
+    default: ''
+  fail-on:
+    description: 'Minimum severity to fail the build (CRITICAL, HIGH, MEDIUM, LOW, INFO)'
+    required: false
+    default: ''
+  min-severity:
+    description: 'Minimum severity to report (CRITICAL, HIGH, MEDIUM, LOW, INFO)'
+    required: false
+    default: ''
+  pillar:
+    description: 'Filter by Well-Architected pillar (Security, Reliability, OperationalExcellence, PerformanceEfficiency, CostOptimization, Sustainability)'
+    required: false
+    default: ''
+  config:
+    description: 'Path to suppression config file (.wat.yaml)'
+    required: false
+    default: ''
+  wat-version:
+    description: 'Version of wat to install (e.g., v1.0.0, latest)'
+    required: false
+    default: 'latest'
+  upload-sarif:
+    description: 'Upload SARIF results to GitHub Code Scanning (requires format: sarif)'
+    required: false
+    default: 'false'
+  sarif-category:
+    description: 'Category for SARIF upload (useful for multiple analyses)'
+    required: false
+    default: 'wat'
+
+outputs:
+  results-file:
+    description: 'Path to the results file (if output-file was specified)'
+    value: ${{ steps.analyze.outputs.results-file }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install wat
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        VERSION="${{ inputs.wat-version }}"
+        if [[ "$VERSION" == "latest" ]]; then
+          VERSION=$(curl -s https://api.github.com/repos/ilijad1/well-architected-terraform/releases/latest | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+        fi
+
+        # Detect platform
+        OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+        ARCH=$(uname -m)
+        case "$ARCH" in
+          x86_64) ARCH="amd64" ;;
+          aarch64|arm64) ARCH="arm64" ;;
+        esac
+
+        BINARY="wat_${OS}_${ARCH}"
+        if [[ "$OS" == "darwin" ]]; then
+          BINARY="wat_Darwin_${ARCH}"
+        elif [[ "$OS" == "linux" ]]; then
+          BINARY="wat_Linux_${ARCH}"
+        fi
+
+        DOWNLOAD_URL="https://github.com/ilijad1/well-architected-terraform/releases/download/${VERSION}/${BINARY}"
+
+        echo "Downloading wat ${VERSION} for ${OS}/${ARCH}..."
+        curl -sSL "$DOWNLOAD_URL" -o wat
+        chmod +x wat
+        sudo mv wat /usr/local/bin/wat
+
+        wat version
+
+    - name: Run wat analyze
+      id: analyze
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        CMD=(wat analyze)
+
+        if [[ -n "${{ inputs.format }}" ]]; then
+          CMD+=(--format "${{ inputs.format }}")
+        fi
+
+        if [[ -n "${{ inputs.output-file }}" ]]; then
+          CMD+=(--output "${{ inputs.output-file }}")
+          echo "results-file=${{ inputs.output-file }}" >> $GITHUB_OUTPUT
+        fi
+
+        if [[ -n "${{ inputs.fail-on }}" ]]; then
+          CMD+=(--fail-on "${{ inputs.fail-on }}")
+        fi
+
+        if [[ -n "${{ inputs.min-severity }}" ]]; then
+          CMD+=(--min-severity "${{ inputs.min-severity }}")
+        fi
+
+        if [[ -n "${{ inputs.pillar }}" ]]; then
+          CMD+=(--pillar "${{ inputs.pillar }}")
+        fi
+
+        if [[ -n "${{ inputs.config }}" ]]; then
+          CMD+=(--config "${{ inputs.config }}")
+        fi
+
+        CMD+=("${{ inputs.plan-file }}")
+
+        echo "Running: ${CMD[*]}"
+        "${CMD[@]}"
+
+    - name: Upload SARIF results
+      if: inputs.upload-sarif == 'true' && inputs.format == 'sarif'
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ inputs.output-file }}
+        category: ${{ inputs.sarif-category }}

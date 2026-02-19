@@ -1,0 +1,153 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.5.0",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_s3_bucket.root_bucket",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "root_bucket",
+          "values": {
+            "bucket": "my-root-bucket",
+            "tags": {
+              "Environment": "production"
+            },
+            "server_side_encryption_configuration": [
+              {
+                "rule": [
+                  {
+                    "apply_server_side_encryption_by_default": [
+                      {
+                        "sse_algorithm": "aws:kms"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "address": "aws_instance.web",
+          "mode": "managed",
+          "type": "aws_instance",
+          "name": "web",
+          "values": {
+            "ami": "ami-12345678",
+            "instance_type": "t3.micro",
+            "metadata_options": [
+              {
+                "http_tokens": "required",
+                "http_endpoint": "enabled"
+              }
+            ],
+            "tags": {
+              "Name": "web-server"
+            }
+          }
+        },
+        {
+          "address": "data.aws_iam_policy_document.example",
+          "mode": "data",
+          "type": "aws_iam_policy_document",
+          "name": "example",
+          "values": {
+            "json": "{}"
+          }
+        }
+      ],
+      "child_modules": [
+        {
+          "address": "module.vpc",
+          "resources": [
+            {
+              "address": "module.vpc.aws_vpc.this",
+              "mode": "managed",
+              "type": "aws_vpc",
+              "name": "this",
+              "values": {
+                "cidr_block": "10.0.0.0/16",
+                "enable_dns_hostnames": true,
+                "tags": {
+                  "Name": "main-vpc"
+                }
+              }
+            },
+            {
+              "address": "module.vpc.aws_subnet.public[0]",
+              "mode": "managed",
+              "type": "aws_subnet",
+              "name": "public",
+              "values": {
+                "cidr_block": "10.0.1.0/24",
+                "map_public_ip_on_launch": true,
+                "tags": {
+                  "Name": "public-subnet-0"
+                }
+              }
+            }
+          ],
+          "child_modules": [
+            {
+              "address": "module.vpc.module.security",
+              "resources": [
+                {
+                  "address": "module.vpc.module.security.aws_security_group.default",
+                  "mode": "managed",
+                  "type": "aws_security_group",
+                  "name": "default",
+                  "values": {
+                    "name": "default-sg",
+                    "description": "Default security group",
+                    "ingress": [
+                      {
+                        "from_port": 443,
+                        "to_port": 443,
+                        "protocol": "tcp",
+                        "cidr_blocks": ["0.0.0.0/0"]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "address": "module.eks",
+          "resources": [
+            {
+              "address": "module.eks.aws_eks_cluster.this",
+              "mode": "managed",
+              "type": "aws_eks_cluster",
+              "name": "this",
+              "values": {
+                "name": "my-cluster",
+                "enabled_cluster_log_types": ["api", "audit", "authenticator"],
+                "encryption_config": [
+                  {
+                    "resources": ["secrets"],
+                    "provider": [
+                      {
+                        "key_arn": "arn:aws:kms:us-east-1:123456789:key/abc"
+                      }
+                    ]
+                  }
+                ],
+                "vpc_config": [
+                  {
+                    "endpoint_private_access": true,
+                    "endpoint_public_access": false,
+                    "subnet_ids": ["subnet-1", "subnet-2"]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

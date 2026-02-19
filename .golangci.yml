@@ -1,0 +1,43 @@
+version: "2"
+
+linters:
+  enable:
+    - govet
+    - staticcheck
+    - errcheck
+    - gosimple
+    - ineffassign
+    - unused
+    - gofmt
+    - godot        # enforces full sentences in comments
+    - misspell
+    - bodyclose
+    - noctx
+    - unconvert
+    - unparam
+
+linters-settings:
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment   # not worth the complexity for this project
+  errcheck:
+    check-type-assertions: true
+  staticcheck:
+    checks: ["all"]
+  misspell:
+    locale: US
+
+issues:
+  # Don't fail on these in test files
+  exclude-rules:
+    - path: "_test\\.go"
+      linters:
+        - errcheck
+        - godot
+    - path: "internal/rules/"
+      linters:
+        - godot     # rule descriptions intentionally lack trailing periods in some places
+
+  max-issues-per-linter: 0
+  max-same-issues: 0
