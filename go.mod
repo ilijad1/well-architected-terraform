@@ -2,6 +2,8 @@ module github.com/ilijad1/well-architected-terraform
 
 go 1.24.0
 
+toolchain go1.25.7
+
 require (
 	github.com/fatih/color v1.18.0
 	github.com/hashicorp/hcl/v2 v2.24.0
