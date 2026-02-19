@@ -51,7 +51,7 @@ func (p *Parser) ParseDirectory(dir string) ([]model.TerraformResource, error) {
 
 // ParseFile parses a single .tf file and extracts resource blocks.
 func (p *Parser) ParseFile(path string) ([]model.TerraformResource, error) {
-	src, err := os.ReadFile(path)
+	src, err := os.ReadFile(path) // #nosec G304 -- path is a CLI argument supplied by the operator
 	if err != nil {
 		return nil, err
 	}

@@ -9,11 +9,11 @@ import (
 // JUnit XML output structs.
 
 type junitTestSuites struct {
-	XMLName xml.Name         `xml:"testsuites"`
-	Name    string           `xml:"name,attr"`
-	Tests   int              `xml:"tests,attr"`
-	Failures int             `xml:"failures,attr"`
-	Suites  []junitTestSuite `xml:"testsuite"`
+	XMLName  xml.Name         `xml:"testsuites"`
+	Name     string           `xml:"name,attr"`
+	Tests    int              `xml:"tests,attr"`
+	Failures int              `xml:"failures,attr"`
+	Suites   []junitTestSuite `xml:"testsuite"`
 }
 
 type junitTestSuite struct {
@@ -92,7 +92,7 @@ func (r *JUnitReporter) Generate(w io.Writer, summary Summary) error {
 
 // resourceTypeFromAddress extracts the resource type from a Terraform address.
 // "module.vpc.aws_security_group.main" -> "aws_security_group"
-// "aws_s3_bucket.data" -> "aws_s3_bucket"
+// "aws_s3_bucket.data" -> "aws_s3_bucket".
 func resourceTypeFromAddress(addr string) string {
 	// Walk from the end; the resource type is the second-to-last dot-separated segment
 	parts := splitAddress(addr)

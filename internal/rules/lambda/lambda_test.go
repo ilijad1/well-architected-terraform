@@ -10,8 +10,8 @@ import (
 // TracingRule Tests
 func TestTracingRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_lambda_function",
-		Name: "test",
+		Type:       "aws_lambda_function",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"tracing_config": {{
@@ -42,8 +42,8 @@ func TestTracingRule_Fail_NoBlock(t *testing.T) {
 
 func TestTracingRule_Fail_PassiveMode(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_lambda_function",
-		Name: "test",
+		Type:       "aws_lambda_function",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"tracing_config": {{
@@ -63,8 +63,8 @@ func TestTracingRule_Fail_PassiveMode(t *testing.T) {
 // DeadLetterRule Tests
 func TestDeadLetterRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_lambda_function",
-		Name: "test",
+		Type:       "aws_lambda_function",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"dead_letter_config": {{
@@ -131,8 +131,8 @@ func TestEnvEncryptionRule_Pass_NoEnvironment(t *testing.T) {
 
 func TestEnvEncryptionRule_Pass_EmptyEnvironment(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_lambda_function",
-		Name: "test",
+		Type:       "aws_lambda_function",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"environment": {{
@@ -150,8 +150,8 @@ func TestEnvEncryptionRule_Pass_EmptyEnvironment(t *testing.T) {
 
 func TestEnvEncryptionRule_Fail(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_lambda_function",
-		Name: "test",
+		Type:       "aws_lambda_function",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"environment": {{

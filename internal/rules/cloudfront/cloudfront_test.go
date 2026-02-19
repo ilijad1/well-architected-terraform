@@ -10,8 +10,8 @@ import (
 // TLSVersionRule Tests
 func TestTLSVersionRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_cloudfront_distribution",
-		Name: "test",
+		Type:       "aws_cloudfront_distribution",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"viewer_certificate": {{
@@ -30,8 +30,8 @@ func TestTLSVersionRule_Pass(t *testing.T) {
 
 func TestTLSVersionRule_Fail(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_cloudfront_distribution",
-		Name: "test",
+		Type:       "aws_cloudfront_distribution",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"viewer_certificate": {{
@@ -51,8 +51,8 @@ func TestTLSVersionRule_Fail(t *testing.T) {
 // HTTPSOnlyRule Tests
 func TestHTTPSOnlyRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_cloudfront_distribution",
-		Name: "test",
+		Type:       "aws_cloudfront_distribution",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"default_cache_behavior": {{
@@ -71,8 +71,8 @@ func TestHTTPSOnlyRule_Pass(t *testing.T) {
 
 func TestHTTPSOnlyRule_Fail(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_cloudfront_distribution",
-		Name: "test",
+		Type:       "aws_cloudfront_distribution",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"default_cache_behavior": {{
@@ -119,8 +119,8 @@ func TestWAFRule_Fail(t *testing.T) {
 // AccessLoggingRule Tests
 func TestAccessLoggingRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_cloudfront_distribution",
-		Name: "test",
+		Type:       "aws_cloudfront_distribution",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"logging_config": {{
@@ -150,8 +150,8 @@ func TestAccessLoggingRule_Fail(t *testing.T) {
 // CompressionRule Tests
 func TestCompressionRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_cloudfront_distribution",
-		Name: "test",
+		Type:       "aws_cloudfront_distribution",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"default_cache_behavior": {{
@@ -170,8 +170,8 @@ func TestCompressionRule_Pass(t *testing.T) {
 
 func TestCompressionRule_Fail(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_cloudfront_distribution",
-		Name: "test",
+		Type:       "aws_cloudfront_distribution",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"default_cache_behavior": {{

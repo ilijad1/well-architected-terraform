@@ -1,3 +1,4 @@
+// Package route53 contains Well-Architected rules for AWS ROUTE53 resources.
 package route53
 
 import (

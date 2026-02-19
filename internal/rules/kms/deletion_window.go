@@ -1,3 +1,4 @@
+// Package kms contains Well-Architected rules for AWS KMS resources.
 package kms
 
 import (

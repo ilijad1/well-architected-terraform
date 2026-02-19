@@ -1,3 +1,4 @@
+// Package engine provides the rule registry and execution engine.
 package engine
 
 import (

@@ -1,3 +1,4 @@
+// Package kinesis contains Well-Architected rules for AWS KINESIS resources.
 package kinesis
 
 import (

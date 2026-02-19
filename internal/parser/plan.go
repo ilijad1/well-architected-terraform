@@ -1,3 +1,4 @@
+// Package parser parses Terraform plan JSON into model types.
 package parser
 
 import (
@@ -45,7 +46,7 @@ type planResource struct {
 
 // ParsePlanFile parses a Terraform plan JSON file and returns resources.
 func ParsePlanFile(path string) ([]model.TerraformResource, error) {
-	data, err := os.ReadFile(path)
+	data, err := os.ReadFile(path) // #nosec G304 -- path is a CLI argument supplied by the operator
 	if err != nil {
 		return nil, fmt.Errorf("reading plan file: %w", err)
 	}
@@ -110,7 +111,9 @@ func convertPlanResource(r planResource) model.TerraformResource {
 			continue
 		}
 		if isBlockValue(val) {
-			blocks[key] = convertBlocks(key, val.([]interface{}))
+			if arr, ok := val.([]interface{}); ok {
+				blocks[key] = convertBlocks(key, arr)
+			}
 		} else {
 			attrs[key] = val
 		}
@@ -152,7 +155,9 @@ func convertBlocks(blockType string, items []interface{}) []model.Block {
 
 		for key, val := range m {
 			if isBlockValue(val) {
-				nested[key] = convertBlocks(key, val.([]interface{}))
+				if arr, ok := val.([]interface{}); ok {
+					nested[key] = convertBlocks(key, arr)
+				}
 			} else {
 				attrs[key] = val
 			}

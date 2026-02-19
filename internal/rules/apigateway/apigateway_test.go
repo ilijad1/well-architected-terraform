@@ -10,8 +10,8 @@ import (
 // StageLoggingRule Tests
 func TestStageLoggingRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_api_gateway_stage",
-		Name: "test",
+		Type:       "aws_api_gateway_stage",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"access_log_settings": {{
@@ -68,8 +68,8 @@ func TestXRayTracingRule_Fail(t *testing.T) {
 // V2StageLoggingRule Tests
 func TestV2StageLoggingRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_apigatewayv2_stage",
-		Name: "test",
+		Type:       "aws_apigatewayv2_stage",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"access_log_settings": {{

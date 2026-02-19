@@ -1,3 +1,4 @@
+// Package guardduty contains Well-Architected rules for AWS GUARDDUTY resources.
 package guardduty
 
 import (

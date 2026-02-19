@@ -1,3 +1,4 @@
+// Package rules imports all rule packages to trigger their init() registration.
 package rules
 
 import (

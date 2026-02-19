@@ -1,3 +1,4 @@
+// Package awsconfig contains Well-Architected rules for AWS AWSCONFIG resources.
 package awsconfig
 
 import (

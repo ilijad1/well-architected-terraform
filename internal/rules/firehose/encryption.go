@@ -1,3 +1,4 @@
+// Package firehose contains Well-Architected rules for AWS FIREHOSE resources.
 package firehose
 
 import (

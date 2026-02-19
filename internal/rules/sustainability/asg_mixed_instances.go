@@ -1,3 +1,4 @@
+// Package sustainability contains Well-Architected rules for AWS SUSTAINABILITY resources.
 package sustainability
 
 import (

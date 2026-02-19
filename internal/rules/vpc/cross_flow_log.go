@@ -1,3 +1,4 @@
+// Package vpc contains Well-Architected rules for AWS VPC resources.
 package vpc
 
 import (

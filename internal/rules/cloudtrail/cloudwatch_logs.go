@@ -1,3 +1,4 @@
+// Package cloudtrail contains Well-Architected rules for AWS CLOUDTRAIL resources.
 package cloudtrail
 
 import (

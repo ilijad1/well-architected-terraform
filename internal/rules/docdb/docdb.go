@@ -1,3 +1,4 @@
+// Package docdb contains Well-Architected rules for AWS DOCDB resources.
 package docdb
 
 import (

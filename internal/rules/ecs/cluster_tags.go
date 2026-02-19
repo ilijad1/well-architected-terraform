@@ -1,3 +1,4 @@
+// Package ecs contains Well-Architected rules for AWS ECS resources.
 package ecs
 
 import (

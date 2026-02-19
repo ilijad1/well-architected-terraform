@@ -1,3 +1,4 @@
+// Package emr contains Well-Architected rules for AWS EMR resources.
 package emr
 
 import (

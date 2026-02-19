@@ -28,12 +28,12 @@ func (r *OpenIngress) Metadata() model.RuleMetadata {
 
 // sensitivePorts maps port numbers to their service names.
 var sensitivePorts = map[int]string{
-	22:   "SSH",
-	3389: "RDP",
-	3306: "MySQL",
-	5432: "PostgreSQL",
-	1433: "MSSQL",
-	6379: "Redis",
+	22:    "SSH",
+	3389:  "RDP",
+	3306:  "MySQL",
+	5432:  "PostgreSQL",
+	1433:  "MSSQL",
+	6379:  "Redis",
 	27017: "MongoDB",
 }
 

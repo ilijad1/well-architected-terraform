@@ -1,3 +1,4 @@
+// Package elb contains Well-Architected rules for AWS ELB resources.
 package elb
 
 import (

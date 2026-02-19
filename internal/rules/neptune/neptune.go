@@ -1,3 +1,4 @@
+// Package neptune contains Well-Architected rules for AWS NEPTUNE resources.
 package neptune
 
 import (

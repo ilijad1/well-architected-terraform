@@ -1,3 +1,4 @@
+// Package sns contains Well-Architected rules for AWS SNS resources.
 package sns
 
 import (

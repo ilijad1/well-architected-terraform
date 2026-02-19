@@ -1,3 +1,4 @@
+// Package cognito contains Well-Architected rules for AWS COGNITO resources.
 package cognito
 
 import (

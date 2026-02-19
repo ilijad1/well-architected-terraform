@@ -1,3 +1,4 @@
+// Package secretsmanager contains Well-Architected rules for AWS SECRETSMANAGER resources.
 package secretsmanager
 
 import (

@@ -1,3 +1,4 @@
+// Package s3 contains Well-Architected rules for AWS S3 resources.
 package s3
 
 import (

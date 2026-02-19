@@ -1,3 +1,4 @@
+// Package acm contains Well-Architected rules for AWS ACM resources.
 package acm
 
 import (
@@ -26,10 +27,10 @@ func (r *TLSPolicyRule) Metadata() model.RuleMetadata {
 }
 
 var outdatedTLSPolicies = map[string]bool{
-	"ELBSecurityPolicy-2016-08":    true,
+	"ELBSecurityPolicy-2016-08":         true,
 	"ELBSecurityPolicy-TLS-1-0-2015-04": true,
 	"ELBSecurityPolicy-TLS-1-1-2017-01": true,
-	"ELBSecurityPolicy-2015-05":    true,
+	"ELBSecurityPolicy-2015-05":         true,
 }
 
 func (r *TLSPolicyRule) Evaluate(resource model.TerraformResource) []model.Finding {

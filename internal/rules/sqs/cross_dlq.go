@@ -1,3 +1,4 @@
+// Package sqs contains Well-Architected rules for AWS SQS resources.
 package sqs
 
 import (

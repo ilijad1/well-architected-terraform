@@ -1,3 +1,4 @@
+// Package model defines core types for rules, findings, and Terraform resources.
 package model
 
 type Severity string

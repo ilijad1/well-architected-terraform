@@ -1,3 +1,4 @@
+// Package report provides output formatters for analysis results.
 package report
 
 import (

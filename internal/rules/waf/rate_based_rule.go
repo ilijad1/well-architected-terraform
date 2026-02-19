@@ -1,3 +1,4 @@
+// Package waf contains Well-Architected rules for AWS WAF resources.
 package waf
 
 import (

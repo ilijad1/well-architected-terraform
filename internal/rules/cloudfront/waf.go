@@ -26,8 +26,8 @@ func (r *WAFRule) Metadata() model.RuleMetadata {
 func (r *WAFRule) Evaluate(resource model.TerraformResource) []model.Finding {
 	var findings []model.Finding
 
-	webAclID, exists := resource.GetStringAttr("web_acl_id")
-	if !exists || webAclID == "" {
+	webACLID, exists := resource.GetStringAttr("web_acl_id")
+	if !exists || webACLID == "" {
 		findings = append(findings, model.Finding{
 			RuleID:      "CF-003",
 			RuleName:    r.Metadata().Name,

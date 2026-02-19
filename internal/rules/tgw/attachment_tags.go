@@ -1,3 +1,4 @@
+// Package tgw contains Well-Architected rules for AWS TGW resources.
 package tgw
 
 import (

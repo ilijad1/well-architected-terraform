@@ -254,7 +254,7 @@ func TestClusterMultiAZ_SingleAZ(t *testing.T) {
 		Type: "aws_elasticache_cluster",
 		Name: "single_az",
 		Attributes: map[string]interface{}{
-			"az_mode":        "single-az",
+			"az_mode":         "single-az",
 			"num_cache_nodes": float64(1),
 		},
 		Blocks: map[string][]model.Block{},
@@ -269,7 +269,7 @@ func TestClusterMultiAZ_CrossAZ(t *testing.T) {
 		Type: "aws_elasticache_cluster",
 		Name: "multi_az",
 		Attributes: map[string]interface{}{
-			"az_mode":        "cross-az",
+			"az_mode":         "cross-az",
 			"num_cache_nodes": float64(3),
 		},
 		Blocks: map[string][]model.Block{},

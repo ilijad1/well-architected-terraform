@@ -1,3 +1,4 @@
+// Package rds contains Well-Architected rules for AWS RDS resources.
 package rds
 
 import (

@@ -1,3 +1,4 @@
+// Package sagemaker contains Well-Architected rules for AWS SAGEMAKER resources.
 package sagemaker
 
 import (

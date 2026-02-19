@@ -1,3 +1,4 @@
+// Package msk contains Well-Architected rules for AWS MSK resources.
 package msk
 
 import (

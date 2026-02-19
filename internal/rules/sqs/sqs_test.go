@@ -195,8 +195,8 @@ func TestCrossDLQ_QueueWithNoDLQInPlan(t *testing.T) {
 	r := &CrossDLQRule{}
 	resources := []model.TerraformResource{
 		makeSQSRes("aws_sqs_queue", "main", map[string]interface{}{
-			"name":            "main-queue",
-			"redrive_policy":  `{"deadLetterTargetArn":"arn:aws:sqs:us-east-1:123456789012:external-dlq","maxReceiveCount":5}`,
+			"name":           "main-queue",
+			"redrive_policy": `{"deadLetterTargetArn":"arn:aws:sqs:us-east-1:123456789012:external-dlq","maxReceiveCount":5}`,
 		}),
 	}
 	findings := r.EvaluateAll(resources)

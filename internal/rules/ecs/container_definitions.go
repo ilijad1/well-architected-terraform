@@ -46,7 +46,7 @@ func init() {
 	engine.Register(&LogConfig{})
 }
 
-// ECS-002
+// NoPrivileged checks that ECS task definitions do not run privileged containers (ECS-002).
 type NoPrivileged struct{}
 
 func (r *NoPrivileged) Metadata() model.RuleMetadata {
@@ -80,7 +80,7 @@ func (r *NoPrivileged) Evaluate(resource model.TerraformResource) []model.Findin
 	return nil
 }
 
-// ECS-003
+// ReadonlyRoot checks that ECS containers use a readonly root filesystem (ECS-003).
 type ReadonlyRoot struct{}
 
 func (r *ReadonlyRoot) Metadata() model.RuleMetadata {
@@ -115,7 +115,7 @@ func (r *ReadonlyRoot) Evaluate(resource model.TerraformResource) []model.Findin
 	return findings
 }
 
-// ECS-004
+// NoSecretsInEnv checks that ECS containers do not expose secrets via environment variables (ECS-004).
 type NoSecretsInEnv struct{}
 
 var sensitiveEnvPatterns = []string{"SECRET", "PASSWORD", "TOKEN", "API_KEY", "PRIVATE_KEY"}
@@ -158,7 +158,7 @@ func (r *NoSecretsInEnv) Evaluate(resource model.TerraformResource) []model.Find
 	return findings
 }
 
-// ECS-005
+// LogConfig checks that ECS containers have log configuration for observability (ECS-005).
 type LogConfig struct{}
 
 func (r *LogConfig) Metadata() model.RuleMetadata {

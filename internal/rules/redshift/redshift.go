@@ -1,3 +1,4 @@
+// Package redshift contains Well-Architected rules for AWS REDSHIFT resources.
 package redshift
 
 import (

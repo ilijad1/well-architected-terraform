@@ -1,3 +1,4 @@
+// Package networkfirewall contains Well-Architected rules for AWS NETWORKFIREWALL resources.
 package networkfirewall
 
 import (

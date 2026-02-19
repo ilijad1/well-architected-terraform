@@ -1,3 +1,4 @@
+// Package ssm contains Well-Architected rules for AWS SSM resources.
 package ssm
 
 import (

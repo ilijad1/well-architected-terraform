@@ -55,7 +55,7 @@ func TestWildcardCert_NotWildcard(t *testing.T) {
 func TestWildcardCert_WildcardWithSpecificSANs(t *testing.T) {
 	r := &WildcardCertRule{}
 	findings := r.Evaluate(res("aws_acm_certificate", "cert", map[string]interface{}{
-		"domain_name":              "*.example.com",
+		"domain_name":               "*.example.com",
 		"subject_alternative_names": []interface{}{"api.example.com", "web.example.com"},
 	}))
 	assert.Len(t, findings, 1)
@@ -65,7 +65,7 @@ func TestWildcardCert_WildcardWithSpecificSANs(t *testing.T) {
 func TestWildcardCert_WildcardWithOnlyWildcardSANs(t *testing.T) {
 	r := &WildcardCertRule{}
 	findings := r.Evaluate(res("aws_acm_certificate", "cert", map[string]interface{}{
-		"domain_name":              "*.example.com",
+		"domain_name":               "*.example.com",
 		"subject_alternative_names": []interface{}{"*.example.com"},
 	}))
 	assert.Empty(t, findings)

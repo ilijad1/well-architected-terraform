@@ -1,3 +1,4 @@
+// Package organizations contains Well-Architected rules for AWS ORGANIZATIONS resources.
 package organizations
 
 import (

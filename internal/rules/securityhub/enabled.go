@@ -1,3 +1,4 @@
+// Package securityhub contains Well-Architected rules for AWS SECURITYHUB resources.
 package securityhub
 
 import (

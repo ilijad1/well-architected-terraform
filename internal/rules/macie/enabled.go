@@ -1,3 +1,4 @@
+// Package macie contains Well-Architected rules for AWS MACIE resources.
 package macie
 
 import (

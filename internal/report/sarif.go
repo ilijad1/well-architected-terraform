@@ -32,10 +32,10 @@ type sarifDriver struct {
 }
 
 type sarifReportingDescriptor struct {
-	ID               string            `json:"id"`
-	Name             string            `json:"name"`
-	ShortDescription sarifMessage      `json:"shortDescription"`
-	HelpURI          string            `json:"helpUri,omitempty"`
+	ID               string                 `json:"id"`
+	Name             string                 `json:"name"`
+	ShortDescription sarifMessage           `json:"shortDescription"`
+	HelpURI          string                 `json:"helpUri,omitempty"`
 	Properties       map[string]interface{} `json:"properties,omitempty"`
 }
 

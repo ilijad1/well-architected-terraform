@@ -10,8 +10,8 @@ import (
 // EncryptionRule Tests
 func TestEncryptionRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_dynamodb_table",
-		Name: "test",
+		Type:       "aws_dynamodb_table",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"server_side_encryption": {{
@@ -42,8 +42,8 @@ func TestEncryptionRule_Fail_NoBlock(t *testing.T) {
 
 func TestEncryptionRule_Fail_NotEnabled(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_dynamodb_table",
-		Name: "test",
+		Type:       "aws_dynamodb_table",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"server_side_encryption": {{
@@ -63,8 +63,8 @@ func TestEncryptionRule_Fail_NotEnabled(t *testing.T) {
 // PITRRule Tests
 func TestPITRRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_dynamodb_table",
-		Name: "test",
+		Type:       "aws_dynamodb_table",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"point_in_time_recovery": {{
@@ -95,8 +95,8 @@ func TestPITRRule_Fail_NoBlock(t *testing.T) {
 
 func TestPITRRule_Fail_NotEnabled(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_dynamodb_table",
-		Name: "test",
+		Type:       "aws_dynamodb_table",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"point_in_time_recovery": {{

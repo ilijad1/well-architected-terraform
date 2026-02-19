@@ -37,8 +37,8 @@ func TestDropInvalidHeadersRule_Fail(t *testing.T) {
 // AccessLogsRule Tests
 func TestAccessLogsRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_lb",
-		Name: "test",
+		Type:       "aws_lb",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"access_logs": {{

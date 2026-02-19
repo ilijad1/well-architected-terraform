@@ -1,3 +1,4 @@
+// Package stepfunctions contains Well-Architected rules for AWS STEPFUNCTIONS resources.
 package stepfunctions
 
 import (

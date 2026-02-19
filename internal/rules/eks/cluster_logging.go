@@ -1,3 +1,4 @@
+// Package eks contains Well-Architected rules for AWS EKS resources.
 package eks
 
 import (

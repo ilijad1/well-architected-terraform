@@ -1,3 +1,4 @@
+// Package opensearch contains Well-Architected rules for AWS OPENSEARCH resources.
 package opensearch
 
 import (
@@ -23,7 +24,7 @@ func (r *EncryptAtRest) Metadata() model.RuleMetadata {
 	return model.RuleMetadata{
 		ID: "OS-001", Name: "OpenSearch Encrypt at Rest",
 		Description: "OpenSearch domains should have encryption at rest enabled.",
-		Severity: model.SeverityHigh, Pillar: model.PillarSecurity,
+		Severity:    model.SeverityHigh, Pillar: model.PillarSecurity,
 		ResourceTypes: []string{"aws_opensearch_domain"},
 	}
 }
@@ -43,7 +44,7 @@ func (r *NodeToNode) Metadata() model.RuleMetadata {
 	return model.RuleMetadata{
 		ID: "OS-002", Name: "OpenSearch Node-to-Node Encryption",
 		Description: "OpenSearch domains should have node-to-node encryption enabled.",
-		Severity: model.SeverityHigh, Pillar: model.PillarSecurity,
+		Severity:    model.SeverityHigh, Pillar: model.PillarSecurity,
 		ResourceTypes: []string{"aws_opensearch_domain"},
 	}
 }
@@ -63,7 +64,7 @@ func (r *EnforceHTTPS) Metadata() model.RuleMetadata {
 	return model.RuleMetadata{
 		ID: "OS-003", Name: "OpenSearch Enforce HTTPS",
 		Description: "OpenSearch domains should enforce HTTPS.",
-		Severity: model.SeverityHigh, Pillar: model.PillarSecurity,
+		Severity:    model.SeverityHigh, Pillar: model.PillarSecurity,
 		ResourceTypes: []string{"aws_opensearch_domain"},
 	}
 }
@@ -83,7 +84,7 @@ func (r *VPCEndpoint) Metadata() model.RuleMetadata {
 	return model.RuleMetadata{
 		ID: "OS-004", Name: "OpenSearch VPC Endpoint",
 		Description: "OpenSearch domains should be deployed within a VPC.",
-		Severity: model.SeverityHigh, Pillar: model.PillarSecurity,
+		Severity:    model.SeverityHigh, Pillar: model.PillarSecurity,
 		ResourceTypes: []string{"aws_opensearch_domain"},
 	}
 }
@@ -101,7 +102,7 @@ func (r *AuditLogs) Metadata() model.RuleMetadata {
 	return model.RuleMetadata{
 		ID: "OS-005", Name: "OpenSearch Audit Logs",
 		Description: "OpenSearch domains should publish audit logs.",
-		Severity: model.SeverityMedium, Pillar: model.PillarSecurity,
+		Severity:    model.SeverityMedium, Pillar: model.PillarSecurity,
 		ResourceTypes: []string{"aws_opensearch_domain"},
 	}
 }
@@ -121,7 +122,7 @@ func (r *AdvancedSecurity) Metadata() model.RuleMetadata {
 	return model.RuleMetadata{
 		ID: "OS-006", Name: "OpenSearch Advanced Security",
 		Description: "OpenSearch domains should have advanced security options enabled.",
-		Severity: model.SeverityHigh, Pillar: model.PillarSecurity,
+		Severity:    model.SeverityHigh, Pillar: model.PillarSecurity,
 		ResourceTypes: []string{"aws_opensearch_domain"},
 	}
 }
@@ -141,7 +142,7 @@ func (r *TLSPolicy) Metadata() model.RuleMetadata {
 	return model.RuleMetadata{
 		ID: "OS-007", Name: "OpenSearch TLS 1.2 Policy",
 		Description: "OpenSearch domains should use TLS 1.2 security policy.",
-		Severity: model.SeverityMedium, Pillar: model.PillarSecurity,
+		Severity:    model.SeverityMedium, Pillar: model.PillarSecurity,
 		ResourceTypes: []string{"aws_opensearch_domain"},
 	}
 }

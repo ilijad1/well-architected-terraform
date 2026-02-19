@@ -37,15 +37,15 @@ func runListRules(cmd *cobra.Command, args []string) error {
 	}
 
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintf(w, "ID\tNAME\tSEVERITY\tPILLAR\tRESOURCES\n")
-	fmt.Fprintf(w, "--\t----\t--------\t------\t---------\n")
+	_, _ = fmt.Fprintf(w, "ID\tNAME\tSEVERITY\tPILLAR\tRESOURCES\n")
+	_, _ = fmt.Fprintf(w, "--\t----\t--------\t------\t---------\n")
 
 	for _, meta := range allMeta {
 		if listPillarFlag != "" && !strings.EqualFold(string(meta.Pillar), listPillarFlag) {
 			continue
 		}
 
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n",
+		_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n",
 			meta.ID,
 			meta.Name,
 			meta.Severity,

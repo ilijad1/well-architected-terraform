@@ -1,3 +1,4 @@
+// Package transfer contains Well-Architected rules for AWS TRANSFER resources.
 package transfer
 
 import (

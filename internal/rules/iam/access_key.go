@@ -1,3 +1,4 @@
+// Package iam contains Well-Architected rules for AWS IAM resources.
 package iam
 
 import (

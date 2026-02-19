@@ -10,8 +10,8 @@ import (
 // LoggingDestinationRule Tests
 func TestLoggingDestinationRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_bedrock_model_invocation_logging_configuration",
-		Name: "test",
+		Type:       "aws_bedrock_model_invocation_logging_configuration",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"logging_config": {{
@@ -50,8 +50,8 @@ func TestLoggingDestinationRule_Fail(t *testing.T) {
 // TextDataDeliveryRule Tests
 func TestTextDataDeliveryRule_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_bedrock_model_invocation_logging_configuration",
-		Name: "test",
+		Type:       "aws_bedrock_model_invocation_logging_configuration",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"logging_config": {{
@@ -70,8 +70,8 @@ func TestTextDataDeliveryRule_Pass(t *testing.T) {
 
 func TestTextDataDeliveryRule_Fail(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_bedrock_model_invocation_logging_configuration",
-		Name: "test",
+		Type:       "aws_bedrock_model_invocation_logging_configuration",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"logging_config": {{

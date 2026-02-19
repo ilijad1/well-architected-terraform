@@ -1,3 +1,4 @@
+// Package eventbridge contains Well-Architected rules for AWS EVENTBRIDGE resources.
 package eventbridge
 
 import (

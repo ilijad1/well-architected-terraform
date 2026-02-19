@@ -1,3 +1,4 @@
+// Package config handles suppression configuration loading and application.
 package config
 
 import (
@@ -15,16 +16,16 @@ type Config struct {
 
 // Suppression defines a rule+resource combination that should be excluded from findings.
 type Suppression struct {
-	RuleID   string `yaml:"rule_id"`   // e.g. "S3-001" or "*" for all rules
-	Resource string `yaml:"resource"`  // full Terraform address or "*" for all resources
-	Reason   string `yaml:"reason"`    // required justification
-	Expires  string `yaml:"expires"`   // required expiry date in YYYY-MM-DD format
+	RuleID   string `yaml:"rule_id"`  // e.g. "S3-001" or "*" for all rules
+	Resource string `yaml:"resource"` // full Terraform address or "*" for all resources
+	Reason   string `yaml:"reason"`   // required justification
+	Expires  string `yaml:"expires"`  // required expiry date in YYYY-MM-DD format
 }
 
 // Load reads and parses a .wat.yaml configuration file.
 // Returns an empty Config (not an error) if the file does not exist.
 func Load(path string) (*Config, error) {
-	data, err := os.ReadFile(path)
+	data, err := os.ReadFile(path) // #nosec G304 -- path is a CLI argument supplied by the operator
 	if err != nil {
 		if os.IsNotExist(err) {
 			return &Config{}, nil

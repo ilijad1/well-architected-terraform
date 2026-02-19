@@ -1,3 +1,4 @@
+// Package workspaces contains Well-Architected rules for AWS WORKSPACES resources.
 package workspaces
 
 import (

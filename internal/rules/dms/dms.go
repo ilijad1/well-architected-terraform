@@ -1,3 +1,4 @@
+// Package dms contains rules for AWS Database Migration Service resources.
 package dms
 
 import (

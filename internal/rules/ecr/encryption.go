@@ -1,3 +1,4 @@
+// Package ecr contains Well-Architected rules for AWS ECR resources.
 package ecr
 
 import (

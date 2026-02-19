@@ -1,3 +1,4 @@
+// Package athena contains Well-Architected rules for AWS ATHENA resources.
 package athena
 
 import (

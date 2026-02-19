@@ -1,3 +1,4 @@
+// Package bedrock contains Well-Architected rules for AWS BEDROCK resources.
 package bedrock
 
 import (

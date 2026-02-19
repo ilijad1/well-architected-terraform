@@ -1,3 +1,4 @@
+// Package apigateway contains Well-Architected rules for AWS APIGATEWAY resources.
 package apigateway
 
 import (

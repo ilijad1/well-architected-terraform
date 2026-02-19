@@ -1,3 +1,4 @@
+// Package glue contains Well-Architected rules for AWS GLUE resources.
 package glue
 
 import (

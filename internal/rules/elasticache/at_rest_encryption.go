@@ -1,3 +1,4 @@
+// Package elasticache contains Well-Architected rules for AWS ELASTICACHE resources.
 package elasticache
 
 import (

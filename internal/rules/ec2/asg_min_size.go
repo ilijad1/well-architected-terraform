@@ -1,3 +1,4 @@
+// Package ec2 contains Well-Architected rules for AWS EC2 resources.
 package ec2
 
 import (

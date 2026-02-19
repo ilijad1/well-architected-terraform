@@ -10,8 +10,8 @@ import (
 // SecretsEncryption Tests
 func TestSecretsEncryption_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_eks_cluster",
-		Name: "test",
+		Type:       "aws_eks_cluster",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"encryption_config": {{
@@ -42,8 +42,8 @@ func TestSecretsEncryption_Fail_NoBlock(t *testing.T) {
 
 func TestSecretsEncryption_Fail_NoSecretsInResources(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_eks_cluster",
-		Name: "test",
+		Type:       "aws_eks_cluster",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"encryption_config": {{
@@ -106,8 +106,8 @@ func TestClusterLogging_Fail_Empty(t *testing.T) {
 // PrivateEndpoint Tests
 func TestPrivateEndpoint_Pass(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_eks_cluster",
-		Name: "test",
+		Type:       "aws_eks_cluster",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"vpc_config": {{
@@ -138,8 +138,8 @@ func TestPrivateEndpoint_Fail_NoBlock(t *testing.T) {
 
 func TestPrivateEndpoint_Fail_NotEnabled(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_eks_cluster",
-		Name: "test",
+		Type:       "aws_eks_cluster",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"vpc_config": {{
@@ -159,8 +159,8 @@ func TestPrivateEndpoint_Fail_NotEnabled(t *testing.T) {
 // PublicEndpoint Tests
 func TestPublicEndpoint_Pass_Disabled(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_eks_cluster",
-		Name: "test",
+		Type:       "aws_eks_cluster",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"vpc_config": {{
@@ -178,8 +178,8 @@ func TestPublicEndpoint_Pass_Disabled(t *testing.T) {
 
 func TestPublicEndpoint_Pass_RestrictedCIDR(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_eks_cluster",
-		Name: "test",
+		Type:       "aws_eks_cluster",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"vpc_config": {{
@@ -211,8 +211,8 @@ func TestPublicEndpoint_Fail_NoBlock(t *testing.T) {
 
 func TestPublicEndpoint_Fail_UnrestrictedCIDR(t *testing.T) {
 	resource := model.TerraformResource{
-		Type: "aws_eks_cluster",
-		Name: "test",
+		Type:       "aws_eks_cluster",
+		Name:       "test",
 		Attributes: map[string]interface{}{},
 		Blocks: map[string][]model.Block{
 			"vpc_config": {{

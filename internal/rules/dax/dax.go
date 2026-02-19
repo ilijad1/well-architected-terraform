@@ -1,3 +1,4 @@
+// Package dax contains Well-Architected rules for AWS DAX resources.
 package dax
 
 import (

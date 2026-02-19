@@ -1,3 +1,4 @@
+// Package cmd implements the CLI commands for the well-architected-terraform tool.
 package cmd
 
 import (
@@ -121,11 +122,11 @@ func runAnalyze(cmd *cobra.Command, args []string) error {
 
 	var w io.Writer = os.Stdout
 	if outputFlag != "" {
-		f, err := os.Create(outputFlag)
+		f, err := os.Create(outputFlag) // #nosec G304 -- path is a CLI argument supplied by the operator
 		if err != nil {
 			return fmt.Errorf("creating output file: %w", err)
 		}
-		defer f.Close()
+		defer func() { _ = f.Close() }()
 		w = f
 	}
 

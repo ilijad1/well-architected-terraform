@@ -25,25 +25,25 @@ func (r *S3BackupEnabled) Metadata() model.RuleMetadata {
 }
 
 func (r *S3BackupEnabled) Evaluate(resource model.TerraformResource) []model.Finding {
-	// Check extended_s3_configuration for s3_backup_mode
-	for _, s3Config := range resource.GetBlocks("extended_s3_configuration") {
-		if mode, ok := s3Config.GetStringAttr("s3_backup_mode"); ok && mode == "Enabled" {
-			return nil
-		}
-		// If the block exists but backup is not enabled, flag it
-		return []model.Finding{{
-			RuleID:      "KDF-002",
-			RuleName:    r.Metadata().Name,
-			Severity:    model.SeverityMedium,
-			Pillar:      model.PillarReliability,
-			Resource:    resource.Address(),
-			File:        resource.File,
-			Line:        resource.Line,
-			Description: "Kinesis Firehose delivery stream extended S3 configuration does not have S3 backup enabled.",
-			Remediation: "Set s3_backup_mode = \"Enabled\" in the extended_s3_configuration block to retain a copy of all source records.",
-			DocURL:      r.Metadata().DocURL,
-		}}
+	// Check extended_s3_configuration for s3_backup_mode.
+	// There is at most one such block; the rule only applies when it exists.
+	blocks := resource.GetBlocks("extended_s3_configuration")
+	if len(blocks) == 0 {
+		return nil
 	}
-	// No extended_s3_configuration block — rule only applies when that block exists
-	return nil
+	if mode, ok := blocks[0].GetStringAttr("s3_backup_mode"); ok && mode == "Enabled" {
+		return nil
+	}
+	return []model.Finding{{
+		RuleID:      "KDF-002",
+		RuleName:    r.Metadata().Name,
+		Severity:    model.SeverityMedium,
+		Pillar:      model.PillarReliability,
+		Resource:    resource.Address(),
+		File:        resource.File,
+		Line:        resource.Line,
+		Description: "Kinesis Firehose delivery stream extended S3 configuration does not have S3 backup enabled.",
+		Remediation: "Set s3_backup_mode = \"Enabled\" in the extended_s3_configuration block to retain a copy of all source records.",
+		DocURL:      r.Metadata().DocURL,
+	}}
 }

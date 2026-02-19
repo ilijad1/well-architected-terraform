@@ -1,3 +1,4 @@
+// Package dynamodb contains Well-Architected rules for AWS DYNAMODB resources.
 package dynamodb
 
 import (

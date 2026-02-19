@@ -15,26 +15,26 @@ type CLIReporter struct{}
 func (r *CLIReporter) Generate(w io.Writer, summary Summary) error {
 	if summary.TotalFindings == 0 {
 		green := color.New(color.FgGreen, color.Bold)
-		green.Fprintln(w, "No findings! Your Terraform configuration looks good.")
-		fmt.Fprintf(w, "Scanned %d resources.\n", summary.TotalResources)
+		_, _ = green.Fprintln(w, "No findings! Your Terraform configuration looks good.")
+		_, _ = fmt.Fprintf(w, "Scanned %d resources.\n", summary.TotalResources)
 		return nil
 	}
 
 	// Header
 	bold := color.New(color.Bold)
-	bold.Fprintf(w, "AWS Well-Architected Analysis Results\n")
-	fmt.Fprintf(w, "%s\n\n", strings.Repeat("=", 50))
+	_, _ = bold.Fprintf(w, "AWS Well-Architected Analysis Results\n")
+	_, _ = fmt.Fprintf(w, "%s\n\n", strings.Repeat("=", 50))
 
 	// Summary
-	fmt.Fprintf(w, "Resources scanned: %d\n", summary.TotalResources)
-	fmt.Fprintf(w, "Findings:          %d\n", summary.TotalFindings)
+	_, _ = fmt.Fprintf(w, "Resources scanned: %d\n", summary.TotalResources)
+	_, _ = fmt.Fprintf(w, "Findings:          %d\n", summary.TotalFindings)
 	if summary.SuppressedFindings > 0 {
-		fmt.Fprintf(w, "Suppressed:        %d\n", summary.SuppressedFindings)
+		_, _ = fmt.Fprintf(w, "Suppressed:        %d\n", summary.SuppressedFindings)
 	}
-	fmt.Fprintln(w)
+	_, _ = fmt.Fprintln(w)
 
 	// Severity breakdown
-	bold.Fprintln(w, "By Severity:")
+	_, _ = bold.Fprintln(w, "By Severity:")
 	severities := []model.Severity{
 		model.SeverityCritical,
 		model.SeverityHigh,
@@ -45,40 +45,40 @@ func (r *CLIReporter) Generate(w io.Writer, summary Summary) error {
 	for _, sev := range severities {
 		count := summary.BySeverity[sev]
 		if count > 0 {
-			fmt.Fprintf(w, "  %s %d\n", severityLabel(sev), count)
+			_, _ = fmt.Fprintf(w, "  %s %d\n", severityLabel(sev), count)
 		}
 	}
-	fmt.Fprintln(w)
+	_, _ = fmt.Fprintln(w)
 
 	// Pillar breakdown
-	bold.Fprintln(w, "By Pillar:")
+	_, _ = bold.Fprintln(w, "By Pillar:")
 	for _, pillar := range model.AllPillars() {
 		count := summary.ByPillar[pillar]
 		if count > 0 {
-			fmt.Fprintf(w, "  %-25s %d\n", pillar, count)
+			_, _ = fmt.Fprintf(w, "  %-25s %d\n", pillar, count)
 		}
 	}
-	fmt.Fprintln(w)
+	_, _ = fmt.Fprintln(w)
 
 	// Findings detail
-	bold.Fprintln(w, "Findings:")
-	fmt.Fprintf(w, "%s\n", strings.Repeat("-", 80))
+	_, _ = bold.Fprintln(w, "Findings:")
+	_, _ = fmt.Fprintf(w, "%s\n", strings.Repeat("-", 80))
 
 	for i, f := range summary.Findings {
-		fmt.Fprintf(w, "\n%s [%s] %s\n", severityLabel(f.Severity), f.RuleID, f.RuleName)
-		fmt.Fprintf(w, "  Resource:    %s\n", f.Resource)
-		fmt.Fprintf(w, "  Location:    %s:%d\n", f.File, f.Line)
-		fmt.Fprintf(w, "  Description: %s\n", f.Description)
-		fmt.Fprintf(w, "  Remediation: %s\n", f.Remediation)
+		_, _ = fmt.Fprintf(w, "\n%s [%s] %s\n", severityLabel(f.Severity), f.RuleID, f.RuleName)
+		_, _ = fmt.Fprintf(w, "  Resource:    %s\n", f.Resource)
+		_, _ = fmt.Fprintf(w, "  Location:    %s:%d\n", f.File, f.Line)
+		_, _ = fmt.Fprintf(w, "  Description: %s\n", f.Description)
+		_, _ = fmt.Fprintf(w, "  Remediation: %s\n", f.Remediation)
 		if f.DocURL != "" {
-			fmt.Fprintf(w, "  Docs:        %s\n", f.DocURL)
+			_, _ = fmt.Fprintf(w, "  Docs:        %s\n", f.DocURL)
 		}
 		if i < len(summary.Findings)-1 {
-			fmt.Fprintf(w, "%s\n", strings.Repeat("-", 80))
+			_, _ = fmt.Fprintf(w, "%s\n", strings.Repeat("-", 80))
 		}
 	}
 
-	fmt.Fprintln(w)
+	_, _ = fmt.Fprintln(w)
 	return nil
 }
 

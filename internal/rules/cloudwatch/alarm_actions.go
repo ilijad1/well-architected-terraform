@@ -1,3 +1,4 @@
+// Package cloudwatch contains Well-Architected rules for AWS CLOUDWATCH resources.
 package cloudwatch
 
 import (

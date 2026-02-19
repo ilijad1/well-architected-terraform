@@ -1,3 +1,4 @@
+// Package efs contains Well-Architected rules for AWS EFS resources.
 package efs
 
 import (

@@ -1,3 +1,4 @@
+// Package inspector contains Well-Architected rules for AWS INSPECTOR resources.
 package inspector
 
 import (

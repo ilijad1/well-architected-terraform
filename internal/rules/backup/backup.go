@@ -1,3 +1,4 @@
+// Package backup contains Well-Architected rules for AWS BACKUP resources.
 package backup
 
 import (

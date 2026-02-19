@@ -1,3 +1,4 @@
+// Package cloudfront contains Well-Architected rules for AWS CLOUDFRONT resources.
 package cloudfront
 
 import (

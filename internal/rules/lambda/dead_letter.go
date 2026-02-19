@@ -1,3 +1,4 @@
+// Package lambda contains rules for AWS Lambda resources.
 package lambda
 
 import (

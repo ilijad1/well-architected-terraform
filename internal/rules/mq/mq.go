@@ -1,3 +1,4 @@
+// Package mq contains Well-Architected rules for AWS MQ resources.
 package mq
 
 import (

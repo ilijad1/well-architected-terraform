@@ -1,3 +1,4 @@
+// Package codebuild contains Well-Architected rules for AWS CODEBUILD resources.
 package codebuild
 
 import (
